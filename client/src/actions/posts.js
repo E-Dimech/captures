@@ -23,3 +23,14 @@ export const getPosts = () => async (dispatch) => {
 // step:1   when the action gets dispatched
 // step:2   from app.js through useEffect
 // step:3   fires posts reducer which handles logic for fetching all posts
+
+export const createPost = (post) => async (dispatch) => {
+  try {
+    // makes a post api request to server
+    const { data } = await api.createPost(post);
+
+    dispatch({ type: "CREATE", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
