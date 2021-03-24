@@ -7,12 +7,13 @@ import postRoutes from "./routes/posts.js";
 
 const app = express();
 
-// every route in posts will start with the path /posts
-app.use("/posts", postRoutes);
-
+// remeber to place cors above any routes you dummy!!!!!
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+// every route in posts will start with the path /posts
+app.use("/posts", postRoutes);
 
 const CONNECTION_URL =
   "mongodb+srv://edimech:$K8ter905@cluster0.ci3nu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
