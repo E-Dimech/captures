@@ -21,7 +21,7 @@ function App() {
     <Container maxwidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">
-          Memories
+          Capture
         </Typography>
         <img
           className={classes.images}

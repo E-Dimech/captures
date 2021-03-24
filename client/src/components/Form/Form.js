@@ -34,7 +34,7 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating Captures</Typography>
+        <Typography variant="h6">Content Creator</Typography>
         <TextField
           name="creator"
           variant="outlined"
