@@ -18,7 +18,7 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
   const classes = useStyles();
@@ -28,17 +28,30 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (currentId === 0) {
-      dispatch(createPost(postData));
-    } else {
-      dispatch(updatePost(currentId, postData));
-    }
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
   };
 
-  const clear = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+      clear();
+    } else {
+      dispatch(createPost(postData));
+
+      clear();
+    }
+    // clear();
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -48,7 +61,9 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Content Creator</Typography>
+        <Typography variant="h6">
+          Content {currentId ? "Editor" : "Creator"}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
@@ -105,7 +120,6 @@ const Form = ({ currentId, setCurrentId }) => {
           Submit
         </Button>
         <Button
-          className={classes.buttonSubmit}
           variant="contained"
           color="secondary"
           size="small"
