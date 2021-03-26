@@ -16,9 +16,16 @@ app.use(cors());
 // every route in posts will start with the path /posts
 app.use("/posts", postRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello to Captures API");
+});
+
 // const CONNECTION_URL =
 //   "mongodb+srv://edimech:$K8ter905@cluster0.ci3nu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Our app is running on port ${PORT}`);
+});
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
