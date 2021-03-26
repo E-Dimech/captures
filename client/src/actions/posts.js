@@ -1,10 +1,10 @@
-// * as = import eveything from the actions as api.
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes";
+// * as = import everything from the actions as api.
 // use api.fetchposts because will have a lot of calls exported from api
-
 import * as api from "../api";
 
 // Action creators are functions that return an action
-// an acition is an obj with a type and payload
+// an action is an obj with a type and payload
 // payload is data where posts are stored
 // redux thunk need async logic need 2nd (async) arrow function
 // instead of return use dispatch(action)
@@ -14,7 +14,7 @@ export const getPosts = () => async (dispatch) => {
     // gets response from api, returns data obj. the data represents posts
     const { data } = await api.fetchPosts();
     // using redux to pass/dispatch an action from data from backend
-    dispatch({ type: "FETCH_ALL", payload: data });
+    dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error.message);
   }
@@ -29,7 +29,7 @@ export const createPost = (post) => async (dispatch) => {
     // makes a post api request to server
     const { data } = await api.createPost(post);
 
-    dispatch({ type: "CREATE", payload: data });
+    dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -39,7 +39,7 @@ export const updatePost = (id, post) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(id, post);
 
-    dispatch({ type: "UPDATE", payload: data });
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -49,7 +49,7 @@ export const deletePost = (id) => async (dispatch) => {
   try {
     await api.deletePost(id);
 
-    dispatch({ type: "DELETE", payload: id });
+    dispatch({ type: DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +60,7 @@ export const likePost = (id) => async (dispatch) => {
     //get data of newly updated post
     const { data } = await api.likePost(id);
 
-    dispatch({ type: "UPDATE", payload: data });
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
