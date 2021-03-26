@@ -1,8 +1,8 @@
-This is a basic social media image posting app.<br>
+This is a basic social media image app that allows users to post images to a story board with descriptions to help preserve those captured moments.
 
 Users can add photos with descriptions and hashtags in addition to liking, deleting and updating their posts.
 
-Tech Stack:
+Tech Stack:<br>
 React<br>
 Node<br>
 Express<br>
